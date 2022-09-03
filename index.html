@@ -104,9 +104,10 @@ const  measureLength = 32;
 //ロード
 function load(){
   for(i = 0; i < measureLength; i++){
-    notes[i] = " ";
+    notes[i] = "";
   }
   changeTempo();
+  measure_edit.style.display = "none";
   ABCJS.renderAbc("paper","M:4/4\nL:1/8\nK:C\n " + `"C"` + notes[0] + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + `"F"` + notes[8] + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + `"G"` + notes[16] + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + `"C"` + notes[24] + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] + "|]",{add_classes: true,responsive: "resize",paddingtop:"18",paddingbottom:"8"});
 }
 
@@ -281,10 +282,6 @@ let eighthNote = document.getElementById("eighthNote");
 let quarterNote = document.getElementById("quarterNote");
 let dottedQuarterNote = document.getElementById("dottedQuarterNote");
 let halfNote = document.getElementById("halfNote");
-
-
-measure_edit.style.display = "none";
-
 
 const wrong = new Audio('audio/wrong.mp3');
 
