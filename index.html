@@ -122,7 +122,7 @@ function borderReset(){
     const tempo_category = document.getElementById("tempo_category");
     const play_mode = document.getElementById("play_mode");
     const measure_edit = document.getElementById("measureEdit");
-    const notes = new Array(); 
+    const notes = []; 
     const kachi = new Audio('audio/kachi.mp3');
     let notesCount = 0;
 
@@ -296,7 +296,7 @@ function soundAndDisplayNote(sound,display) {
   if(notesCount >= measureLength){
         wrong.play();
   }
-  
+
   else if(eighthNote.checked){
         if(measure_edit.value == "measure1"){
           if(notesCount == 0 || notesCount%8 != 0){
