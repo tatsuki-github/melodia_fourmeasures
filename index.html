@@ -513,11 +513,11 @@ document.getElementById("quarterRest").addEventListener("click", function() {
   if(notesCount%8 == 7 || notesCount >= measureLength){
         wrong.play();
       }
-      else{
-        notes[notesCount] = "z2";
-        notesCount+=2;
-        displayNote();
-      }
+  else{
+    notes[notesCount] = "z2";
+    notesCount+=2;
+    displayNote();
+  }
 }, false);
 
 
