@@ -381,7 +381,7 @@ function soundAndDisplayNote(sound,display) {
           }
         }
 
-        if(measure_edit.value == "measure2"){
+      else if(measure_edit.value == "measure2"){
           if(notesCount == 8 || notesCount%8 != 0){
           playSingleNote(sound,"4n");
           notes[notesCount] = display + "2";
@@ -389,7 +389,7 @@ function soundAndDisplayNote(sound,display) {
           }
         }
 
-        if(measure_edit.value == "measure3"){
+      else if(measure_edit.value == "measure3"){
           if(notesCount == 16 || notesCount%8 != 0){
           playSingleNote(sound,"4n");
           notes[notesCount] = display + "2";
@@ -397,7 +397,7 @@ function soundAndDisplayNote(sound,display) {
           }
         }
 
-        if(measure_edit.value == "measure4"){
+      else if(measure_edit.value == "measure4"){
           if(notesCount == 24 || notesCount%8 != 0){
           playSingleNote(sound,"4n");
           notes[notesCount] = display + "2";
@@ -525,25 +525,30 @@ document.getElementById("quarterRest").addEventListener("click", function() {
 measure_edit.onchange = measureEdit;
 
 function measureEdit(){
-  displayPiano();
-  displayNote();
-
   switch (measure_edit.value){
   case "measure1":
     notesCount = 0;
     notes.fill("", 0, 8);
+    displayNote();
+    displayPiano();
   break;
   case "measure2": 
     notesCount = 8;
     notes.fill("", 8, 16);
+    displayNote();
+    displayPiano();
   break;
   case "measure3":
     notesCount = 16;
     notes.fill("", 16, 24);
+    displayNote();
+    displayPiano();
   break;
   case "measure4": 
     notesCount = 24;
     notes.fill("", 24, 32);
+    displayNote();
+    displayPiano();
   break;
   default:
   }
@@ -591,8 +596,8 @@ document.getElementById("oneBack").addEventListener("click", function() {
 }, false);
 
 document.getElementById("piano").addEventListener("click", function() {
-    displayNote();
-    displayPiano();
+  displayNote();
+  displayPiano();
 }, false);
 
 
@@ -649,18 +654,21 @@ document.getElementById("do").addEventListener("click", function() {
   if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C4","C");
   }
+  else{}
 }, false);
 
   document.getElementById("re").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount <= 23){
       soundAndDisplayNote("D4","D");
     }
+    else{}
 }, false);
 
   document.getElementById("mi").addEventListener("click", function() {
     if(notesCount < 8 || notesCount >= 16 && notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("E4","E");
     }
+    else{}
 }, false);
 
   document.getElementById("fa").addEventListener("click", function() {
@@ -673,30 +681,35 @@ document.getElementById("do").addEventListener("click", function() {
     if(notesCount < 8 || notesCount >= 16){
     soundAndDisplayNote("G4","G");
     }
+    else{}
 }, false);
 
   document.getElementById("ra").addEventListener("click", function() {
     if(notesCount >= 8 && notesCount < 16){
     soundAndDisplayNote("A4","A");
     }
+    else{}
 }, false);
 
   document.getElementById("shi").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("B4","B");
     }
+    else{}
 }, false);
 
   document.getElementById("do_high").addEventListener("click", function() {
     if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C5","c");
     }
+    else{}
 }, false);
 
   document.getElementById("re_high").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("D5","d");
     }
+    else{}
 }, false);
 
   document.getElementById("mi_high").addEventListener("click", function() {
