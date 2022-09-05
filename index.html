@@ -296,57 +296,75 @@ function soundAndDisplayNote(sound,display) {
   }
 
   else if(eighthNote.checked){
-        playSingleNote(sound,"8n");
         switch (measure_edit.value){
           case "measure1":
             if(notesCount == 0 || notesCount%8 != 0){
               if(notesCount%2 == 0){
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display;
+                notesCount++;
               }
               else{
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display + " ";
+                notesCount++;
               }
             }
           break;  
           case "measure2":
             if(notesCount == 8 || notesCount%8 != 0){
               if(notesCount%2 == 0){
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display;
+                notesCount++;
               }
               else{
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display + " ";
+                notesCount++;
               }
             }
               break;
           case "measure3":
             if(notesCount == 16 || notesCount%8 != 0){
               if(notesCount%2 == 0){
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display;
+                notesCount++;
               }
               else{
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display + " ";
+                notesCount++;
               }
             }
               break;
           case "measure4":
             if(notesCount == 24 || notesCount%8 != 0){
               if(notesCount%2 == 0){
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display;
+                notesCount++;
               }
               else{
+                playSingleNote(sound,"8n");
                 notes[notesCount] = display + " ";
+                notesCount++;
               }
             }
               break;
           default: 
           if(notesCount%2 == 0){
+            playSingleNote(sound,"8n");
             notes[notesCount] = display;
+            notesCount++;
           }
           else{
+            playSingleNote(sound,"8n");
             notes[notesCount] = display + " ";
+            notesCount++;
           }
         } 
-      notesCount++;
     }
 
     else if(quarterNote.checked){
