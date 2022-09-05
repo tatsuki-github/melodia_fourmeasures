@@ -296,17 +296,14 @@ function soundAndDisplayNote(sound,display) {
   }
 
   else if(eighthNote.checked){
+        playSingleNote(sound,"8n");
         if(measure_edit.value == "measure1"){
           if(notesCount == 0 || notesCount%8 != 0){
             if(notesCount%2 == 0){
-              playSingleNote(sound,"8n");
               notes[notesCount] = display;
-              notesCount++;
             }
             else{
-              playSingleNote(sound,"8n");
               notes[notesCount] = display + " ";
-              notesCount++;
             }
           }
         }
@@ -314,14 +311,10 @@ function soundAndDisplayNote(sound,display) {
         else if(measure_edit.value == "measure2"){
           if(notesCount == 8 || notesCount%8 != 0){
             if(notesCount%2 == 0){
-              playSingleNote(sound,"8n");
               notes[notesCount] = display;
-              notesCount++;
             }
             else{
-              playSingleNote(sound,"8n");
               notes[notesCount] = display + " ";
-              notesCount++;
             }
           }
         }
@@ -329,14 +322,10 @@ function soundAndDisplayNote(sound,display) {
         else if(measure_edit.value == "measure3"){
           if(notesCount == 16 || notesCount%8 != 0){
             if(notesCount%2 == 0){
-              playSingleNote(sound,"8n");
               notes[notesCount] = display;
-              notesCount++;
             }
             else{
-              playSingleNote(sound,"8n");
               notes[notesCount] = display + " ";
-              notesCount++;
             }
           }
         }
@@ -344,28 +333,20 @@ function soundAndDisplayNote(sound,display) {
         else if(measure_edit.value == "measure4"){
           if(notesCount == 24 || notesCount%8 != 0){
             if(notesCount%2 == 0){
-              playSingleNote(sound,"8n");
               notes[notesCount] = display;
-              notesCount++;
             }
             else{
-              playSingleNote(sound,"8n");
               notes[notesCount] = display + " ";
-              notesCount++;
             }
           }
       }
-
       else if(notesCount%2 == 0){
-        playSingleNote(sound,"8n");
         notes[notesCount] = display;
-        notesCount++;
       }
       else{
-        playSingleNote(sound,"8n");
         notes[notesCount] = display + " ";
-        notesCount++;
       }
+      notesCount++;
     }
 
     else if(quarterNote.checked){
@@ -499,14 +480,12 @@ document.getElementById("eighthRest").addEventListener("click", function() {
       }
   else if(notes[notesCount - 1] == " z"){
     notes[notesCount - 1] = "z2";
-    notesCount++;
-    displayNote();
   }
   else{
     notes[notesCount] = " z";
-    notesCount++;
-    displayNote();
   }
+  notesCount++;
+  displayNote();
 }, false);
 
 document.getElementById("quarterRest").addEventListener("click", function() {
@@ -516,8 +495,8 @@ document.getElementById("quarterRest").addEventListener("click", function() {
   else{
     notes[notesCount] = "z2";
     notesCount+=2;
-    displayNote();
   }
+  displayNote();
 }, false);
 
 
@@ -529,29 +508,24 @@ function measureEdit(){
   case "measure1":
     notesCount = 0;
     notes.fill("", 0, 8);
-    displayNote();
-    displayPiano();
   break;
   case "measure2": 
     notesCount = 8;
     notes.fill("", 8, 16);
-    displayNote();
-    displayPiano();
   break;
   case "measure3":
     notesCount = 16;
     notes.fill("", 16, 24);
-    displayNote();
-    displayPiano();
   break;
   case "measure4": 
     notesCount = 24;
     notes.fill("", 24, 32);
-    displayNote();
-    displayPiano();
   break;
   default:
+  notesCount = 32;
   }
+  displayNote();
+  displayPiano();
 }
 
 const eighthNoteArray = ["C","D","E","F","G","A","B","c","d","e","C ","D ","E ","F ","G ","A ","B ","c ","d ","e "];
@@ -566,39 +540,29 @@ document.getElementById("oneBack").addEventListener("click", function() {
   else if(eighthNoteArray.includes(notes[notesCount-1])){
     notes[notesCount-1] = "";
     notesCount--;
-    displayNote();
-    displayPiano();
   }
   else if(quarterNoteArray.includes(notes[notesCount-2])){
     notes[notesCount-2] = "";
     notesCount-=2;
-    displayNote();
-    displayPiano();
   }
   else if(dottedQuarterNoteArray.includes(notes[notesCount-3])){
     notes[notesCount-3] = "";
     notesCount-=3;
-    displayNote();
-    displayPiano();
   }
   else if(halfNoteArray.includes(notes[notesCount-4])){
     notes[notesCount-4] = "";
     notesCount-=4;
-    displayNote();
-    displayPiano();
   }
   else if(notes[notesCount-1] == " z"){
     notes[notesCount-1] = "";
     notesCount--;
-    displayNote();
-    displayPiano();
   }
   else if(notes[notesCount-2] == "z2"){
     notes[notesCount-2] = "";
     notesCount-=2;
-    displayNote();
-    displayPiano();
   }
+  displayNote();
+  displayPiano();
 }, false);
 
 document.getElementById("piano").addEventListener("click", function() {
@@ -660,21 +624,18 @@ document.getElementById("do").addEventListener("click", function() {
   if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C4","C");
   }
-  else{}
 }, false);
 
   document.getElementById("re").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount <= 23){
       soundAndDisplayNote("D4","D");
     }
-    else{}
 }, false);
 
   document.getElementById("mi").addEventListener("click", function() {
     if(notesCount < 8 || notesCount >= 16 && notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("E4","E");
     }
-    else{}
 }, false);
 
   document.getElementById("fa").addEventListener("click", function() {
@@ -687,35 +648,30 @@ document.getElementById("do").addEventListener("click", function() {
     if(notesCount < 8 || notesCount >= 16){
     soundAndDisplayNote("G4","G");
     }
-    else{}
 }, false);
 
   document.getElementById("ra").addEventListener("click", function() {
     if(notesCount >= 8 && notesCount < 16){
     soundAndDisplayNote("A4","A");
     }
-    else{}
 }, false);
 
   document.getElementById("shi").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("B4","B");
     }
-    else{}
 }, false);
 
   document.getElementById("do_high").addEventListener("click", function() {
     if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C5","c");
     }
-    else{}
 }, false);
 
   document.getElementById("re_high").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("D5","d");
     }
-    else{}
 }, false);
 
   document.getElementById("mi_high").addEventListener("click", function() {
