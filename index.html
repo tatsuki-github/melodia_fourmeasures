@@ -109,6 +109,7 @@ function load(){
   changeTempo();
   measure_edit.style.display = "none";
   ABCJS.renderAbc("paper","M:4/4\nL:1/8\nK:C\n " + notes[0] + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + notes[8] + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + notes[16] + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + notes[24] + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] + "|]",{add_classes: true,responsive: "resize",paddingtop:"18",paddingbottom:"8"});
+  displayPiano();
 }
 
 function borderReset(){
@@ -592,7 +593,60 @@ document.getElementById("oneBack").addEventListener("click", function() {
 
 document.getElementById("piano").addEventListener("click", function() {
     displayNote();
+    displayPiano();
 }, false);
+
+
+function displayPiano(){
+  document.getElementById("do").style.backgroundColor = "gray";
+  document.getElementById("re").style.backgroundColor = "gray";
+  document.getElementById("mi").style.backgroundColor = "gray";
+  document.getElementById("fa").style.backgroundColor = "gray";
+  document.getElementById("so").style.backgroundColor = "gray";
+  document.getElementById("ra").style.backgroundColor = "gray";
+  document.getElementById("shi").style.backgroundColor = "gray";
+  document.getElementById("do_high").style.backgroundColor = "gray";
+  document.getElementById("re_high").style.backgroundColor = "gray";
+  document.getElementById("mi_high").style.backgroundColor = "gray";
+  
+  if(notesCount < 8){
+    document.getElementById("do").style.backgroundColor = "white";
+    document.getElementById("mi").style.backgroundColor = "white";
+    document.getElementById("so").style.backgroundColor = "white";
+    document.getElementById("do_high").style.backgroundColor = "white";
+  }
+  else if(notesCount < 16){
+    document.getElementById("do").style.backgroundColor = "white";
+    document.getElementById("fa").style.backgroundColor = "white";
+    document.getElementById("ra").style.backgroundColor = "white";
+    document.getElementById("do_high").style.backgroundColor = "white";
+  }
+  else if(notesCount < 20){
+    document.getElementById("do").style.backgroundColor = "white";
+    document.getElementById("mi").style.backgroundColor = "white";
+    document.getElementById("so").style.backgroundColor = "white";
+    document.getElementById("do_high").style.backgroundColor = "white";
+  }
+  else if(notesCount < 24){
+    document.getElementById("re").style.backgroundColor = "white";
+    document.getElementById("fa").style.backgroundColor = "white";
+    document.getElementById("so").style.backgroundColor = "white";
+    document.getElementById("shi").style.backgroundColor = "white";
+    document.getElementById("re_high").style.backgroundColor = "white";
+  }
+  else if(notesCount < 32){
+    document.getElementById("do").style.backgroundColor = "white";
+    document.getElementById("mi").style.backgroundColor = "white";
+    document.getElementById("so").style.backgroundColor = "white";
+    document.getElementById("do_high").style.backgroundColor = "white";
+  }
+  else{
+
+  }
+}
+
+
+
 
 
 //鍵盤音階再生
@@ -639,7 +693,7 @@ document.getElementById("do").addEventListener("click", function() {
 }, false);
 
   document.getElementById("do_high").addEventListener("click", function() {
-    if(notesCount >= 20 && notesCount < 24){
+    if(notesCount <= 20 || notesCount > 24){
     soundAndDisplayNote("C5","c");
     }
 }, false);
