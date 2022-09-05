@@ -597,43 +597,61 @@ document.getElementById("piano").addEventListener("click", function() {
 
 //鍵盤音階再生
 document.getElementById("do").addEventListener("click", function() {
+  if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C4","C");
+  }
 }, false);
 
   document.getElementById("re").addEventListener("click", function() {
-    soundAndDisplayNote("D4","D");
+    if(notesCount >= 20 && notesCount <= 23){
+      soundAndDisplayNote("D4","D");
+    }
 }, false);
 
   document.getElementById("mi").addEventListener("click", function() {
+    if(notesCount < 8 || notesCount >= 16 && notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("E4","E");
+    }
 }, false);
 
   document.getElementById("fa").addEventListener("click", function() {
+    if(notesCount >= 8 && notesCount < 16 || notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("F4","F");
+    }
 }, false);
 
   document.getElementById("so").addEventListener("click", function() {
+    if(notesCount < 8 || notesCount >= 16){
     soundAndDisplayNote("G4","G");
+    }
 }, false);
 
   document.getElementById("ra").addEventListener("click", function() {
+    if(notesCount >= 8 && notesCount < 16){
     soundAndDisplayNote("A4","A");
+    }
 }, false);
 
   document.getElementById("shi").addEventListener("click", function() {
+    if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("B4","B");
+    }
 }, false);
 
   document.getElementById("do_high").addEventListener("click", function() {
+    if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("C5","c");
+    }
 }, false);
 
   document.getElementById("re_high").addEventListener("click", function() {
+    if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("D5","d");
+    }
 }, false);
 
   document.getElementById("mi_high").addEventListener("click", function() {
-    soundAndDisplayNote("E5","e");
+    //soundAndDisplayNote("E5","e");
 }, false);
 </script>
 </body>
