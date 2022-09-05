@@ -297,55 +297,55 @@ function soundAndDisplayNote(sound,display) {
 
   else if(eighthNote.checked){
         playSingleNote(sound,"8n");
-        if(measure_edit.value == "measure1"){
-          if(notesCount == 0 || notesCount%8 != 0){
-            if(notesCount%2 == 0){
-              notes[notesCount] = display;
+        switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
+              if(notesCount%2 == 0){
+                notes[notesCount] = display;
+              }
+              else{
+                notes[notesCount] = display + " ";
+              }
             }
-            else{
-              notes[notesCount] = display + " ";
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+              if(notesCount%2 == 0){
+                notes[notesCount] = display;
+              }
+              else{
+                notes[notesCount] = display + " ";
+              }
             }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+              if(notesCount%2 == 0){
+                notes[notesCount] = display;
+              }
+              else{
+                notes[notesCount] = display + " ";
+              }
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+              if(notesCount%2 == 0){
+                notes[notesCount] = display;
+              }
+              else{
+                notes[notesCount] = display + " ";
+              }
+            }
+              break;
+          default: 
+          if(notesCount%2 == 0){
+            notes[notesCount] = display;
           }
-        }
-
-        else if(measure_edit.value == "measure2"){
-          if(notesCount == 8 || notesCount%8 != 0){
-            if(notesCount%2 == 0){
-              notes[notesCount] = display;
-            }
-            else{
-              notes[notesCount] = display + " ";
-            }
+          else{
+            notes[notesCount] = display + " ";
           }
-        }
-
-        else if(measure_edit.value == "measure3"){
-          if(notesCount == 16 || notesCount%8 != 0){
-            if(notesCount%2 == 0){
-              notes[notesCount] = display;
-            }
-            else{
-              notes[notesCount] = display + " ";
-            }
-          }
-        }
-
-        else if(measure_edit.value == "measure4"){
-          if(notesCount == 24 || notesCount%8 != 0){
-            if(notesCount%2 == 0){
-              notes[notesCount] = display;
-            }
-            else{
-              notes[notesCount] = display + " ";
-            }
-          }
-      }
-      else if(notesCount%2 == 0){
-        notes[notesCount] = display;
-      }
-      else{
-        notes[notesCount] = display + " ";
-      }
+        } 
       notesCount++;
     }
 
@@ -354,43 +354,40 @@ function soundAndDisplayNote(sound,display) {
         wrong.play();
       }
 
-      else if(measure_edit.value == "measure1"){
-          if(notesCount == 0 || notesCount%8 != 0){
+      switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
+            playSingleNote(sound,"4n");
+            notes[notesCount] = display + "2";
+            notesCount+=2;
+            }
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+            playSingleNote(sound,"4n");
+            notes[notesCount] = display + "2";
+            notesCount+=2;
+            }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+            playSingleNote(sound,"4n");
+            notes[notesCount] = display + "2";
+            notesCount+=2;
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+            playSingleNote(sound,"4n");
+            notes[notesCount] = display + "2";
+            notesCount+=2;
+            }
+              break;
+          default: 
           playSingleNote(sound,"4n");
           notes[notesCount] = display + "2";
           notesCount+=2;
-          }
-        }
-
-      else if(measure_edit.value == "measure2"){
-          if(notesCount == 8 || notesCount%8 != 0){
-          playSingleNote(sound,"4n");
-          notes[notesCount] = display + "2";
-          notesCount+=2;
-          }
-        }
-
-      else if(measure_edit.value == "measure3"){
-          if(notesCount == 16 || notesCount%8 != 0){
-          playSingleNote(sound,"4n");
-          notes[notesCount] = display + "2";
-          notesCount+=2;
-          }
-        }
-
-      else if(measure_edit.value == "measure4"){
-          if(notesCount == 24 || notesCount%8 != 0){
-          playSingleNote(sound,"4n");
-          notes[notesCount] = display + "2";
-          notesCount+=2;
-          }
-        }
-
-      else{
-        playSingleNote(sound,"4n");
-        notes[notesCount] = display + "2";
-        notesCount+=2;
-      }
+        } 
     }
 
     else if(dottedQuarterNote.checked){
@@ -398,43 +395,40 @@ function soundAndDisplayNote(sound,display) {
         wrong.play();
       }
 
-      else if(measure_edit.value == "measure1"){
-          if(notesCount == 0 || notesCount%8 != 0){
-            playSingleNote(sound,"3n");
-            notes[notesCount] = display + "3";
-            notesCount+=3;
-          }
-        }
-
-      else if(measure_edit.value == "measure2"){
-          if(notesCount == 8 || notesCount%8 != 0){
-            playSingleNote(sound,"3n");
-            notes[notesCount] = display + "3";
-            notesCount+=3;
-          }
-        }
-
-      else if(measure_edit.value == "measure3"){
-          if(notesCount == 16 || notesCount%8 != 0){
-            playSingleNote(sound,"3n");
-            notes[notesCount] = display + "3";
-            notesCount+=3;
-          }
-        }
-
-      else if(measure_edit.value == "measure4"){
-          if(notesCount == 24 || notesCount%8 != 0){
-            playSingleNote(sound,"3n");
-            notes[notesCount] = display + "3";
-            notesCount+=3;
-          }
-        }
-      
-      else{
-        playSingleNote(sound,"3n");
-        notes[notesCount] = display + "3";
-        notesCount+=3;
-      }
+      switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
+              playSingleNote(sound,"3n");
+              notes[notesCount] = display + "3";
+              notesCount+=3;
+            }
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+              playSingleNote(sound,"3n");
+              notes[notesCount] = display + "3";
+              notesCount+=3;
+            }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+              playSingleNote(sound,"3n");
+              notes[notesCount] = display + "3";
+              notesCount+=3;
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+              playSingleNote(sound,"3n");
+              notes[notesCount] = display + "3";
+              notesCount+=3;
+            }
+              break;
+          default: 
+          playSingleNote(sound,"3n");
+          notes[notesCount] = display + "3";
+          notesCount+=3;
+        } 
     }
 
     else if(halfNote.checked){
@@ -442,35 +436,40 @@ function soundAndDisplayNote(sound,display) {
         wrong.play();
       }
 
-      else if(measure_edit.value == "measure1"){
-          if(notesCount == 0 || notesCount%8 != 0){
-            playSingleNote(sound,"2n");
-            notes[notesCount] = display + "4";
-            notesCount+=4;
-          }
-        }
-
-      else if(measure_edit.value == "measure2"){
-          if(notesCount == 8 || notesCount%8 != 0){
-            playSingleNote(sound,"2n");
-            notes[notesCount] = display + "4";
-            notesCount+=4;
-          }
-        }
-
-      else if(measure_edit.value == "measure3"){
-          if(notesCount == 16 || notesCount%8 != 0){
-            playSingleNote(sound,"2n");
-            notes[notesCount] = display + "4";
-            notesCount+=4;
-          }
-        }
-
-      else{
-        playSingleNote(sound,"2n");
-        notes[notesCount] = display + "4";
-        notesCount+=4;
-      }
+      switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
+              playSingleNote(sound,"2n");
+              notes[notesCount] = display + "4";
+              notesCount+=4;
+            }
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+              playSingleNote(sound,"2n");
+              notes[notesCount] = display + "4";
+              notesCount+=4;
+            }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+              playSingleNote(sound,"2n");
+              notes[notesCount] = display + "4";
+              notesCount+=4;
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+              playSingleNote(sound,"2n");
+              notes[notesCount] = display + "4";
+              notesCount+=4;
+            }
+              break;
+          default: 
+          playSingleNote(sound,"2n");
+          notes[notesCount] = display + "4";
+          notesCount+=4;
+        } 
     }
 }
 
