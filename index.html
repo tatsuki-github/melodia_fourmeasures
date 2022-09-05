@@ -525,26 +525,25 @@ document.getElementById("quarterRest").addEventListener("click", function() {
 measure_edit.onchange = measureEdit;
 
 function measureEdit(){
+  displayPiano();
+  displayNote();
+
   switch (measure_edit.value){
   case "measure1":
     notesCount = 0;
     notes.fill("", 0, 8);
-    displayNote();
   break;
   case "measure2": 
     notesCount = 8;
     notes.fill("", 8, 16);
-    displayNote();
   break;
   case "measure3":
     notesCount = 16;
     notes.fill("", 16, 24);
-    displayNote();
   break;
   case "measure4": 
     notesCount = 24;
     notes.fill("", 24, 32);
-    displayNote();
   break;
   default:
   }
@@ -608,7 +607,7 @@ function displayPiano(){
   document.getElementById("do_high").style.backgroundColor = "gray";
   document.getElementById("re_high").style.backgroundColor = "gray";
   document.getElementById("mi_high").style.backgroundColor = "gray";
-  
+
   if(notesCount < 8){
     document.getElementById("do").style.backgroundColor = "white";
     document.getElementById("mi").style.backgroundColor = "white";
@@ -644,10 +643,6 @@ function displayPiano(){
 
   }
 }
-
-
-
-
 
 //鍵盤音階再生
 document.getElementById("do").addEventListener("click", function() {
@@ -693,7 +688,7 @@ document.getElementById("do").addEventListener("click", function() {
 }, false);
 
   document.getElementById("do_high").addEventListener("click", function() {
-    if(notesCount <= 20 || notesCount > 24){
+    if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C5","c");
     }
 }, false);
