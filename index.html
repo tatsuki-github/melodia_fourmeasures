@@ -567,31 +567,37 @@ document.getElementById("oneBack").addEventListener("click", function() {
     notes[notesCount-1] = "";
     notesCount--;
     displayNote();
+    displayPiano();
   }
   else if(quarterNoteArray.includes(notes[notesCount-2])){
     notes[notesCount-2] = "";
     notesCount-=2;
     displayNote();
+    displayPiano();
   }
   else if(dottedQuarterNoteArray.includes(notes[notesCount-3])){
     notes[notesCount-3] = "";
     notesCount-=3;
     displayNote();
+    displayPiano();
   }
   else if(halfNoteArray.includes(notes[notesCount-4])){
     notes[notesCount-4] = "";
     notesCount-=4;
     displayNote();
+    displayPiano();
   }
   else if(notes[notesCount-1] == " z"){
     notes[notesCount-1] = "";
     notesCount--;
     displayNote();
+    displayPiano();
   }
   else if(notes[notesCount-2] == "z2"){
     notes[notesCount-2] = "";
     notesCount-=2;
     displayNote();
+    displayPiano();
   }
 }, false);
 
