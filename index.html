@@ -101,6 +101,14 @@
 //小節の長さ
 const  measureLength = 32;
 
+//全体で使う変数や設定など
+const tempo_category = document.getElementById("tempo_category");
+    const play_mode = document.getElementById("play_mode");
+    const measure_edit = document.getElementById("measureEdit");
+    const notes = []; 
+    const kachi = new Audio('audio/kachi.mp3');
+    let notesCount = 0;
+
 //ロード
 function load(){
   for(i = 0; i < measureLength; i++){
@@ -119,17 +127,7 @@ function borderReset(){
   document.getElementById("ta__n").style.borderColor = "black";
 }
 
-
-//全体で使う変数や設定など
-    const tempo_category = document.getElementById("tempo_category");
-    const play_mode = document.getElementById("play_mode");
-    const measure_edit = document.getElementById("measureEdit");
-    const notes = []; 
-    const kachi = new Audio('audio/kachi.mp3');
-    let notesCount = 0;
-
-
-//リズム再生
+//リズム画像
 document.getElementById("tan").addEventListener("click", function() {
   kachi.play();
   borderReset();
@@ -156,12 +154,12 @@ document.getElementById("ta_n").addEventListener("click", function() {
 
 //ド→C レ→D ミ→E ファ→F ソ→G ラ→A シ→B ド→c レ→d ミ→e
 function melodyAndChordRenderMidi(bpm) {
-  ABCJS.renderMidi( "audio","M:4/4\nL:1/8\nK:C\nV:1\n" + `${notes[0]}` + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + `${notes[8]}` + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + `${notes[16]}` + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + `${notes[24]}` + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] +  "||" +
+  ABCJS.renderMidi( "audio","M:4/4\nL:1/8\nK:C\nV:1\n" + notes[0] + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + notes[8] + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + notes[16] + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + notes[24] + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] +  "||" +
         "\nV:2\n" + "[C4E4G4c4][C4E4G4c4]" + "|" + "[C4F4A4c4][C4F4A4c4]" + "|" + "[C4E4G4c4][D4F4G4B4d4]" +  "|" + "[C8E8G8c8]" + "||",{generateDownload: true,qpm:bpm,chordsOff:true});
 }
 
 function melodyRenderMidi(bpm) {
-  ABCJS.renderMidi( "audio","M:4/4\nL:1/8\nK:C\n " + `${notes[0]}` + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + `${notes[8]}` + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + `${notes[16]}` + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + `${notes[24]}` + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] + "||",{generateDownload: true,qpm:bpm,chordsOff:true});
+  ABCJS.renderMidi( "audio","M:4/4\nL:1/8\nK:C\n " + notes[0] + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + notes[8] + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + notes[16] + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + notes[24] + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] + "||",{generateDownload: true,qpm:bpm,chordsOff:true});
 }
 
 function chordRenderMidi(bpm) {
@@ -171,7 +169,6 @@ function chordRenderMidi(bpm) {
 
 //テンポ切り替え
 tempo_category.onchange = changeTempo;
-play_mode.onchange = changeTempo;
 
 function changeTempo(){
   switch (tempo_category.value){
@@ -284,7 +281,7 @@ let quarterNote = document.getElementById("quarterNote");
 let dottedQuarterNote = document.getElementById("dottedQuarterNote");
 let halfNote = document.getElementById("halfNote");
 
-const wrong = new Audio('audio/wrong.mp3');
+const wrongSound = new Audio('audio/wrong.mp3');
 
 function soundAndDisplayNote(sound,display) {
   if(notesCount >= measureLength - 8){
@@ -292,7 +289,7 @@ function soundAndDisplayNote(sound,display) {
   }
 
   if(notesCount >= measureLength){
-        wrong.play();
+        wrongSound.play();
   }
 
   else if(eighthNote.checked){
@@ -364,35 +361,36 @@ function soundAndDisplayNote(sound,display) {
         notes[notesCount] = display + "2";
         notesCount+=2;
       }
-      
-      if(notesCount%8 == 7){
-        wrong.play();
-      }
 
-      switch (measure_edit.value){
-          case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
+      if(notesCount%8 == 7){
+        wrongSound.play();
+      }
+      else{
+            switch (measure_edit.value){
+              case "measure1":
+                if(notesCount == 0 || notesCount%8 != 0){
+                  quarterNotePlayAndDisplay();
+                }
+              break;  
+              case "measure2":
+                if(notesCount == 8 || notesCount%8 != 0){
+                  quarterNotePlayAndDisplay();
+                }
+                  break;
+              case "measure3":
+                if(notesCount == 16 || notesCount%8 != 0){
+                  quarterNotePlayAndDisplay();
+                }
+                  break;
+              case "measure4":
+                if(notesCount == 24 || notesCount%8 != 0){
+                  quarterNotePlayAndDisplay();
+                }
+                  break;
+              default: 
               quarterNotePlayAndDisplay();
-            }
-          break;  
-          case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
-              quarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
-              quarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
-              quarterNotePlayAndDisplay();
-            }
-              break;
-          default: 
-          quarterNotePlayAndDisplay();
-        } 
+            } 
+      }
     }
 
     else if(dottedQuarterNote.checked){
@@ -403,33 +401,34 @@ function soundAndDisplayNote(sound,display) {
         notesCount+=3;
       }
       if(notesCount%8 == 6 ||notesCount%8 == 7){
-        wrong.play();
+        wrongSound.play();
       }
-
-      switch (measure_edit.value){
-          case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
+      else{
+            switch (measure_edit.value){
+              case "measure1":
+                if(notesCount == 0 || notesCount%8 != 0){
+                  dottedQuarterNotePlayAndDisplay();
+                }
+              break;  
+              case "measure2":
+                if(notesCount == 8 || notesCount%8 != 0){
+                  dottedQuarterNotePlayAndDisplay();
+                }
+                  break;
+              case "measure3":
+                if(notesCount == 16 || notesCount%8 != 0){
+                  dottedQuarterNotePlayAndDisplay();
+                }
+                  break;
+              case "measure4":
+                if(notesCount == 24 || notesCount%8 != 0){
+                  dottedQuarterNotePlayAndDisplay();
+                }
+                  break;
+              default: 
               dottedQuarterNotePlayAndDisplay();
-            }
-          break;  
-          case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
-              dottedQuarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
-              dottedQuarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
-              dottedQuarterNotePlayAndDisplay();
-            }
-              break;
-          default: 
-          dottedQuarterNotePlayAndDisplay();
-        } 
+            } 
+      }
     }
 
     else if(halfNote.checked){
@@ -440,39 +439,40 @@ function soundAndDisplayNote(sound,display) {
         notesCount+=4;
       }
       if(notesCount%8 == 5 || notesCount%8 == 6 || notesCount%8 == 7){
-        wrong.play();
+        wrongSound.play();
       }
-
-      switch (measure_edit.value){
-          case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
+      else{
+            switch (measure_edit.value){
+              case "measure1":
+                if(notesCount == 0 || notesCount%8 != 0){
+                  halfNotePlayAndDisplay();
+                }
+              break;  
+              case "measure2":
+                if(notesCount == 8 || notesCount%8 != 0){
+                  halfNotePlayAndDisplay();
+                }
+                  break;
+              case "measure3":
+                if(notesCount == 16 || notesCount%8 != 0){
+                  halfNotePlayAndDisplay();
+                }
+                  break;
+              case "measure4":
+                if(notesCount == 24 || notesCount%8 != 0){
+                  halfNotePlayAndDisplay();
+                }
+                  break;
+              default: 
               halfNotePlayAndDisplay();
-            }
-          break;  
-          case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
-              halfNotePlayAndDisplay();
-            }
-              break;
-          case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
-              halfNotePlayAndDisplay();
-            }
-              break;
-          case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
-              halfNotePlayAndDisplay();
-            }
-              break;
-          default: 
-          halfNotePlayAndDisplay();
-        } 
+            } 
+      }
     }
 }
 
 document.getElementById("eighthRest").addEventListener("click", function() {
   if(notesCount >= measureLength){
-        wrong.play();
+        wrongSound.play();
       }
   else if(notes[notesCount - 1] == " z"){
     notes[notesCount - 1] = "z2";
@@ -486,7 +486,7 @@ document.getElementById("eighthRest").addEventListener("click", function() {
 
 document.getElementById("quarterRest").addEventListener("click", function() {
   if(notesCount%8 == 7 || notesCount >= measureLength){
-        wrong.play();
+        wrongSound.play();
       }
   else{
     notes[notesCount] = "z2";
@@ -531,7 +531,10 @@ const halfNoteArray = ["C4","D4","E4","F4","G4","A4","B4","c4","d4","e4"];
 
 document.getElementById("oneBack").addEventListener("click", function() {
   if(notesCount == 0){
-    wrong.play();
+    wrongSound.play();
+  }
+  else if(measure_edit.value == "measure2" && notesCount == 8 || measure_edit.value == "measure3" && notesCount == 16 || measure_edit.value == "measure4" && notesCount == 24){
+    ;
   }
   else if(eighthNoteArray.includes(notes[notesCount-1])){
     notes[notesCount-1] = "";
@@ -560,12 +563,6 @@ document.getElementById("oneBack").addEventListener("click", function() {
   displayNote();
   displayPiano();
 }, false);
-
-document.getElementById("piano").addEventListener("click", function() {
-  displayNote();
-  displayPiano();
-}, false);
-
 
 function displayPiano(){
   document.getElementById("do").style.backgroundColor = "gray";
@@ -610,10 +607,12 @@ function displayPiano(){
     document.getElementById("so").style.backgroundColor = "white";
     document.getElementById("do_high").style.backgroundColor = "white";
   }
-  else{
-
-  }
 }
+
+document.getElementById("piano").addEventListener("click", function() {
+  displayNote();
+  displayPiano();
+}, false);
 
 //鍵盤音階再生
 document.getElementById("do").addEventListener("click", function() {
