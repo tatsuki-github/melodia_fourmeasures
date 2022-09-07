@@ -99,16 +99,19 @@
 </div>
 <script>
 
-//小節の長さ
-const  measureLength = 32;
-
 //全体で使う変数や設定など
+const  measureLength = 32;//小節の長さ
 const tempo_category = document.getElementById("tempo_category");
-    const play_mode = document.getElementById("play_mode");
-    const measure_edit = document.getElementById("measureEdit");
-    const notes = []; 
-    const kachi = new Audio('audio/kachi.mp3');
-    let notesCount = 0;
+const play_mode = document.getElementById("play_mode");
+const measure_edit = document.getElementById("measureEdit");
+const notes = []; 
+const kachi = new Audio('audio/kachi.mp3');
+let notesCount = 0;
+const eighthNote = document.getElementById("eighthNote");
+const quarterNote = document.getElementById("quarterNote");
+const dottedQuarterNote = document.getElementById("dottedQuarterNote");
+const halfNote = document.getElementById("halfNote");
+const wrongSound = new Audio('audio/wrong.mp3');
 
 //ロード
 function load(){
@@ -121,6 +124,7 @@ function load(){
   displayPiano();
 }
 
+//リズム画像
 function borderReset(){
   document.getElementById("tata").style.borderColor = "black";
   document.getElementById("tan").style.borderColor = "black";
@@ -128,7 +132,6 @@ function borderReset(){
   document.getElementById("ta__n").style.borderColor = "black";
 }
 
-//リズム画像
 document.getElementById("tan").addEventListener("click", function() {
   kachi.play();
   borderReset();
@@ -170,7 +173,6 @@ function chordRenderMidi(bpm) {
 
 //テンポ切り替え
 tempo_category.onchange = changeTempo;
-
 function changeTempo(){
   switch (tempo_category.value){
   case "tempo_60":
@@ -270,19 +272,11 @@ function displayNote(){
 //楽譜表示切り替え
 //ド→C レ→D ミ→E ファ→F ソ→G ラ→A シ→B ド→c レ→d ミ→e
 
-
 //音源
 function playSingleNote(note,beat) {
   const synth = new Tone.Synth().toDestination();
   synth.triggerAttackRelease(note, beat);
 }
-
-const eighthNote = document.getElementById("eighthNote");
-const quarterNote = document.getElementById("quarterNote");
-const dottedQuarterNote = document.getElementById("dottedQuarterNote");
-const halfNote = document.getElementById("halfNote");
-
-const wrongSound = new Audio('audio/wrong.mp3');
 
 function soundAndDisplayNote(sound,display) {
   if(notesCount >= measureLength - 8){
@@ -497,9 +491,7 @@ document.getElementById("quarterRest").addEventListener("click", function() {
 }, false);
 
 
-
 measure_edit.onchange = measureEdit;
-
 function measureEdit(){
   switch (measure_edit.value){
   case "measure1":
@@ -525,11 +517,11 @@ function measureEdit(){
   displayPiano();
 }
 
+
 const eighthNoteArray = ["C","D","E","F","G","A","B","c","d","e","C ","D ","E ","F ","G ","A ","B ","c ","d ","e "];
 const quarterNoteArray = ["C2","D2","E2","F2","G2","A2","B2","c2","d2","e2"];
 const dottedQuarterNoteArray = ["C3","D3","E3","F3","G3","A3","B3","c3","d3","e3"];
 const halfNoteArray = ["C4","D4","E4","F4","G4","A4","B4","c4","d4","e4"];
-
 document.getElementById("oneBack").addEventListener("click", function() {
   if(notesCount == 0){
     wrongSound.play();
@@ -614,6 +606,7 @@ document.getElementById("piano").addEventListener("click", function() {
   displayNote();
   displayPiano();
 }, false);
+
 
 //鍵盤音階再生
 document.getElementById("do").addEventListener("click", function() {
