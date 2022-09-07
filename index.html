@@ -115,7 +115,7 @@ function load(){
     notes[i] = "";
   }
   changeTempo();
-  measure_edit.style.display = "none";
+  measure_edit.style.visibility = "hidden";
   ABCJS.renderAbc("paper","M:4/4\nL:1/8\nK:C\n " + notes[0] + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + notes[8] + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + notes[16] + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + notes[24] + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] + "|]",{add_classes: true,responsive: "resize",paddingtop:"18",paddingbottom:"8"});
   displayPiano();
 }
@@ -285,7 +285,7 @@ const wrongSound = new Audio('audio/wrong.mp3');
 
 function soundAndDisplayNote(sound,display) {
   if(notesCount >= measureLength - 8){
-        measure_edit.style.display = "block";
+    measure_edit.style.visibility = "visible";
   }
 
   if(notesCount >= measureLength){
@@ -303,55 +303,55 @@ function soundAndDisplayNote(sound,display) {
       notes[notesCount] = display + " ";
       notesCount++;
     }
-        switch (measure_edit.value){
-          case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
-              if(notesCount%2 == 0){
-                eighthNotePlayAndDisplayNoSpace();
-              }
-              else{
-                eighthNotePlayAndDisplaySpace();
-              }
-            }
-          break;  
-          case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
-              if(notesCount%2 == 0){
-                eighthNotePlayAndDisplayNoSpace();
-              }
-              else{
-                eighthNotePlayAndDisplaySpace();
-              }
-            }
-              break;
-          case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
-              if(notesCount%2 == 0){
-                eighthNotePlayAndDisplayNoSpace();
-              }
-              else{
-                eighthNotePlayAndDisplaySpace();
-              }
-            }
-              break;
-          case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
-              if(notesCount%2 == 0){
-                eighthNotePlayAndDisplayNoSpace();
-              }
-              else{
-                eighthNotePlayAndDisplaySpace();
-              }
-            }
-              break;
-          default: 
+    switch (measure_edit.value){
+      case "measure1":
+        if(notesCount == 0 || notesCount%8 != 0){
           if(notesCount%2 == 0){
             eighthNotePlayAndDisplayNoSpace();
           }
           else{
             eighthNotePlayAndDisplaySpace();
           }
-        } 
+        }
+      break;  
+      case "measure2":
+        if(notesCount == 8 || notesCount%8 != 0){
+          if(notesCount%2 == 0){
+            eighthNotePlayAndDisplayNoSpace();
+          }
+          else{
+            eighthNotePlayAndDisplaySpace();
+          }
+        }
+          break;
+      case "measure3":
+        if(notesCount == 16 || notesCount%8 != 0){
+          if(notesCount%2 == 0){
+            eighthNotePlayAndDisplayNoSpace();
+          }
+          else{
+            eighthNotePlayAndDisplaySpace();
+          }
+        }
+          break;
+      case "measure4":
+        if(notesCount == 24 || notesCount%8 != 0){
+          if(notesCount%2 == 0){
+            eighthNotePlayAndDisplayNoSpace();
+          }
+          else{
+            eighthNotePlayAndDisplaySpace();
+          }
+        }
+          break;
+      default: 
+      if(notesCount%2 == 0){
+        eighthNotePlayAndDisplayNoSpace();
+      }
+      else{
+        eighthNotePlayAndDisplaySpace();
+      }
+    } 
     }
 
     else if(quarterNote.checked){
@@ -366,30 +366,30 @@ function soundAndDisplayNote(sound,display) {
         wrongSound.play();
       }
       else{
-            switch (measure_edit.value){
-              case "measure1":
-                if(notesCount == 0 || notesCount%8 != 0){
-                  quarterNotePlayAndDisplay();
-                }
-              break;  
-              case "measure2":
-                if(notesCount == 8 || notesCount%8 != 0){
-                  quarterNotePlayAndDisplay();
-                }
-                  break;
-              case "measure3":
-                if(notesCount == 16 || notesCount%8 != 0){
-                  quarterNotePlayAndDisplay();
-                }
-                  break;
-              case "measure4":
-                if(notesCount == 24 || notesCount%8 != 0){
-                  quarterNotePlayAndDisplay();
-                }
-                  break;
-              default: 
+        switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
               quarterNotePlayAndDisplay();
-            } 
+            }
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+              quarterNotePlayAndDisplay();
+            }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+              quarterNotePlayAndDisplay();
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+              quarterNotePlayAndDisplay();
+            }
+              break;
+          default: 
+          quarterNotePlayAndDisplay();
+        } 
       }
     }
 
@@ -404,30 +404,30 @@ function soundAndDisplayNote(sound,display) {
         wrongSound.play();
       }
       else{
-            switch (measure_edit.value){
-              case "measure1":
-                if(notesCount == 0 || notesCount%8 != 0){
-                  dottedQuarterNotePlayAndDisplay();
-                }
-              break;  
-              case "measure2":
-                if(notesCount == 8 || notesCount%8 != 0){
-                  dottedQuarterNotePlayAndDisplay();
-                }
-                  break;
-              case "measure3":
-                if(notesCount == 16 || notesCount%8 != 0){
-                  dottedQuarterNotePlayAndDisplay();
-                }
-                  break;
-              case "measure4":
-                if(notesCount == 24 || notesCount%8 != 0){
-                  dottedQuarterNotePlayAndDisplay();
-                }
-                  break;
-              default: 
+        switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
               dottedQuarterNotePlayAndDisplay();
-            } 
+            }
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+              dottedQuarterNotePlayAndDisplay();
+            }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+              dottedQuarterNotePlayAndDisplay();
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+              dottedQuarterNotePlayAndDisplay();
+            }
+              break;
+          default: 
+          dottedQuarterNotePlayAndDisplay();
+        } 
       }
     }
 
@@ -442,30 +442,30 @@ function soundAndDisplayNote(sound,display) {
         wrongSound.play();
       }
       else{
-            switch (measure_edit.value){
-              case "measure1":
-                if(notesCount == 0 || notesCount%8 != 0){
-                  halfNotePlayAndDisplay();
-                }
-              break;  
-              case "measure2":
-                if(notesCount == 8 || notesCount%8 != 0){
-                  halfNotePlayAndDisplay();
-                }
-                  break;
-              case "measure3":
-                if(notesCount == 16 || notesCount%8 != 0){
-                  halfNotePlayAndDisplay();
-                }
-                  break;
-              case "measure4":
-                if(notesCount == 24 || notesCount%8 != 0){
-                  halfNotePlayAndDisplay();
-                }
-                  break;
-              default: 
+        switch (measure_edit.value){
+          case "measure1":
+            if(notesCount == 0 || notesCount%8 != 0){
               halfNotePlayAndDisplay();
-            } 
+            }
+          break;  
+          case "measure2":
+            if(notesCount == 8 || notesCount%8 != 0){
+              halfNotePlayAndDisplay();
+            }
+              break;
+          case "measure3":
+            if(notesCount == 16 || notesCount%8 != 0){
+              halfNotePlayAndDisplay();
+            }
+              break;
+          case "measure4":
+            if(notesCount == 24 || notesCount%8 != 0){
+              halfNotePlayAndDisplay();
+            }
+              break;
+          default: 
+          halfNotePlayAndDisplay();
+        } 
       }
     }
 }
