@@ -2,7 +2,7 @@
 <html lang="ja">
   <head>
     <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
     <title>メロディア　4小節ver.</title>
 
     <script>
@@ -277,10 +277,10 @@ function playSingleNote(note,beat) {
   synth.triggerAttackRelease(note, beat);
 }
 
-let eighthNote = document.getElementById("eighthNote");
-let quarterNote = document.getElementById("quarterNote");
-let dottedQuarterNote = document.getElementById("dottedQuarterNote");
-let halfNote = document.getElementById("halfNote");
+const eighthNote = document.getElementById("eighthNote");
+const quarterNote = document.getElementById("quarterNote");
+const dottedQuarterNote = document.getElementById("dottedQuarterNote");
+const halfNote = document.getElementById("halfNote");
 
 const wrongSound = new Audio('audio/wrong.mp3');
 
@@ -290,7 +290,7 @@ function soundAndDisplayNote(sound,display) {
   }
 
   if(notesCount >= measureLength){
-        wrongSound.play();
+    wrongSound.play();
   }
 
   else if(eighthNote.checked){
