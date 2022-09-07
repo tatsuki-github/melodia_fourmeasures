@@ -173,6 +173,7 @@ function chordRenderMidi(bpm) {
 
 //テンポ切り替え
 tempo_category.onchange = changeTempo;
+play_mode.onchange = changeTempo;
 function changeTempo(){
   switch (tempo_category.value){
   case "tempo_60":
