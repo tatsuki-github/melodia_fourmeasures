@@ -223,6 +223,32 @@ function playSingleNote(note,beat) {
 }
 
 function soundAndDisplayNote(sound,display) {
+  let measureEditFlg = false;
+  switch (measure_edit.value){
+    case "measure1":
+      if(0 <= notesCount && notesCount < 8){
+        measureEditFlg = true;
+      }
+    break;  
+    case "measure2":
+      if(8 <= notesCount && notesCount < 16){
+        measureEditFlg = true;
+      }
+    break;
+    case "measure3":
+      if(16 <= notesCount && notesCount < 24){
+        measureEditFlg = true;
+      }
+    break;
+    case "measure4":
+      if(24 <= notesCount && notesCount < 32){
+        measureEditFlg = true;  
+      }
+    break;
+    default: 
+      measureEditFlg = true;
+  } 
+
   if(notesCount >= measureLength - 8){
     measure_edit.style.visibility = "visible";
   }
@@ -240,164 +266,54 @@ function soundAndDisplayNote(sound,display) {
       notes[notesCount] = display + " ";
       notesCount++;
     }
-    switch (measure_edit.value){
-      case "measure1":
-        if(0 <= notesCount && notesCount < 8){
-          if(notesCount%2 == 0){
-            eighthNotePlayAndDisplayNoSpace();
-          }
-          else{
-            eighthNotePlayAndDisplaySpace();
-          }
-        }
-      break;  
-      case "measure2":
-        if(8 <= notesCount && notesCount < 16){
-          if(notesCount%2 == 0){
-            eighthNotePlayAndDisplayNoSpace();
-          }
-          else{
-            eighthNotePlayAndDisplaySpace();
-          }
-        }
-          break;
-      case "measure3":
-        if(16 <= notesCount && notesCount < 24){
-          if(notesCount%2 == 0){
-            eighthNotePlayAndDisplayNoSpace();
-          }
-          else{
-            eighthNotePlayAndDisplaySpace();
-          }
-        }
-          break;
-      case "measure4":
-        if(24 <= notesCount && notesCount < 32){
-          if(notesCount%2 == 0){
-            eighthNotePlayAndDisplayNoSpace();
-          }
-          else{
-            eighthNotePlayAndDisplaySpace();
-          }
-        }
-          break;
-      default: 
+    if(measureEditFlg){
       if(notesCount%2 == 0){
         eighthNotePlayAndDisplayNoSpace();
       }
       else{
         eighthNotePlayAndDisplaySpace();
       }
-    } 
     }
-    else if(quarterNote.checked){
-      function quarterNotePlayAndDisplay(){
-        playSingleNote(sound,"4n");
-        notes[notesCount] = display + "2";
-        notesCount+=2;
-      }
-      if(notesCount%8 == 7){
-        wrongSound.play();
-      }
-      else{
-        switch (measure_edit.value){
-          case "measure1":
-            if(0 <= notesCount && notesCount < 8){
-              quarterNotePlayAndDisplay();
-            }
-          break;  
-          case "measure2":
-            if(8 <= notesCount && notesCount < 16){
-              quarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure3":
-            if(16 <= notesCount && notesCount < 24){
-              quarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure4":
-            if(24 <= notesCount && notesCount < 32){
-              quarterNotePlayAndDisplay();
-            }
-              break;
-          default: 
-          quarterNotePlayAndDisplay();
-        } 
-      }
+  }
+  else if(quarterNote.checked){
+    function quarterNotePlayAndDisplay(){
+      playSingleNote(sound,"4n");
+      notes[notesCount] = display + "2";
+      notesCount+=2;
     }
-    else if(dottedQuarterNote.checked){
-      function dottedQuarterNotePlayAndDisplay(){
-        playSingleNote(sound,"3n");
-        notes[notesCount] = display + "3";
-        notesCount+=3;
-      }
-      if(notesCount%8 == 6 ||notesCount%8 == 7){
-        wrongSound.play();
-      }
-      else{
-        switch (measure_edit.value){
-          case "measure1":
-            if(0 <= notesCount && notesCount < 8){
-              dottedQuarterNotePlayAndDisplay();
-            }
-          break;  
-          case "measure2":
-            if(8 <= notesCount && notesCount < 16){
-              dottedQuarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure3":
-            if(16 <= notesCount && notesCount < 24){
-              dottedQuarterNotePlayAndDisplay();
-            }
-              break;
-          case "measure4":
-            if(24 <= notesCount && notesCount < 32){
-              dottedQuarterNotePlayAndDisplay();
-            }
-              break;
-          default: 
-          dottedQuarterNotePlayAndDisplay();
-        } 
-      }
+    if(notesCount%8 == 7){
+      wrongSound.play();
     }
-    else if(halfNote.checked){
-      function halfNotePlayAndDisplay(){
-        playSingleNote(sound,"2n");
-        notes[notesCount] = display + "4";
-        notesCount+=4;
-      }
-      if(notesCount%8 == 5 || notesCount%8 == 6 || notesCount%8 == 7){
-        wrongSound.play();
-      }
-      else{
-        switch (measure_edit.value){
-          case "measure1":
-            if(0 <= notesCount && notesCount < 8){
-              halfNotePlayAndDisplay();
-            }
-          break;  
-          case "measure2":
-            if(8 <= notesCount && notesCount < 16){
-              halfNotePlayAndDisplay();
-            }
-              break;
-          case "measure3":
-            if(16 <= notesCount && notesCount < 24){
-              halfNotePlayAndDisplay();
-            }
-              break;
-          case "measure4":
-            if(24 <= notesCount && notesCount < 32){
-              halfNotePlayAndDisplay();
-            }
-              break;
-          default: 
-          halfNotePlayAndDisplay();
-        } 
-      }
+    else if(measureEditFlg){
+      quarterNotePlayAndDisplay();
     }
+  }
+  else if(dottedQuarterNote.checked){
+    function dottedQuarterNotePlayAndDisplay(){
+      playSingleNote(sound,"3n");
+      notes[notesCount] = display + "3";
+      notesCount+=3;
+    }
+    if(notesCount%8 == 6 ||notesCount%8 == 7){
+      wrongSound.play();
+    }
+    else if(measureEditFlg){
+      dottedQuarterNotePlayAndDisplay();
+    }
+  }
+  else if(halfNote.checked){
+    function halfNotePlayAndDisplay(){
+      playSingleNote(sound,"2n");
+      notes[notesCount] = display + "4";
+      notesCount+=4;
+    }
+    if(notesCount%8 == 5 || notesCount%8 == 6 || notesCount%8 == 7){
+      wrongSound.play();
+    }
+    else if(measureEditFlg){
+      halfNotePlayAndDisplay();
+    }
+  }
 }
 
 document.getElementById("eighthRest").addEventListener("click", function() {
