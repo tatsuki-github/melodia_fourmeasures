@@ -131,32 +131,30 @@ function borderReset(){
   document.getElementById("ta_n").style.borderColor = "black";
   document.getElementById("ta__n").style.borderColor = "black";
 }
-
 document.getElementById("tan").addEventListener("click", function() {
   kachi.play();
   borderReset();
   document.getElementById("tan").style.borderColor = "lightblue";
 }, false);
-
 document.getElementById("tata").addEventListener("click", function() {
   kachi.play();
   borderReset();
   document.getElementById("tata").style.borderColor = "lightgreen";
 }, false);
-
 document.getElementById("ta__n").addEventListener("click", function() {
   kachi.play();
   borderReset();
   document.getElementById("ta__n").style.borderColor = "lightpink";
 }, false);
-
 document.getElementById("ta_n").addEventListener("click", function() {
   kachi.play();
   borderReset();
   document.getElementById("ta_n").style.borderColor = "orange";
 }, false);
 
+
 //ド→C レ→D ミ→E ファ→F ソ→G ラ→A シ→B ド→c レ→d ミ→e
+let bpm;
 function melodyAndChordRenderMidi(bpm) {
   ABCJS.renderMidi( "audio","M:4/4\nL:1/8\nK:C\nV:1\n" + notes[0] + notes[1] + notes[2] + notes[3] + notes[4] + notes[5] + notes[6]+ notes[7] + "|" + notes[8] + notes[9] + notes[10] + notes[11] + notes[12] + notes[13] + notes[14]+ notes[15] + "|" + notes[16] + notes[17] + notes[18] + notes[19] + notes[20] + notes[21] + notes[22]+ notes[23] + "|" + notes[24] + notes[25] + notes[26] + notes[27] + notes[28] + notes[29] + notes[30]+ notes[31] +  "||" +
         "\nV:2\n" + "[C4E4G4c4][C4E4G4c4]" + "|" + "[C4F4A4c4][C4F4A4c4]" + "|" + "[C4E4G4c4][D4F4G4B4d4]" +  "|" + "[C8E8G8c8]" + "||",{generateDownload: true,qpm:bpm,chordsOff:true});
@@ -170,97 +168,42 @@ function chordRenderMidi(bpm) {
   ABCJS.renderMidi( "audio","M:4/4\nL:1/8\nK:C\nV:1\n" + "[C4E4G4c4][C4E4G4c4]" + "|" + "[C4F4A4c4][C4F4A4c4]" + "|" + "[C4E4G4c4][D4F4G4B4d4]" +  "|" + "[C8E8G8c8]" + "||",{generateDownload: true,qpm:bpm,chordsOff:true});
 }
 
-
 //テンポ切り替え
 tempo_category.onchange = changeTempo;
 play_mode.onchange = changeTempo;
 function changeTempo(){
   switch (tempo_category.value){
   case "tempo_60":
-    switch (play_mode.value){
-      case "play":
-        melodyAndChordRenderMidi(60);
-        break; 
-      case "only_melody":
-        melodyRenderMidi(60);
-        break; 
-      case "only_chord":
-        chordRenderMidi(60);
-        break;
-      default: 
-    }    
+    bpm = 60;
     break;
   case "tempo_80":
-    switch (play_mode.value){
-      case "play":
-        melodyAndChordRenderMidi(80);
-        break; 
-      case "only_melody":
-        melodyRenderMidi(80);
-        break; 
-      case "only_chord":
-        chordRenderMidi(80);
-        break;
-      default: 
-    }    
+    bpm = 80;
     break;
   case "tempo_100":
-    switch (play_mode.value){
-      case "play":
-        melodyAndChordRenderMidi(100);
-        break;  
-      case "only_melody":
-        melodyRenderMidi(100);
-        break;
-      case "only_chord":
-        chordRenderMidi(100);
-        break;
-      default: 
-    }  
+    bpm = 100;
     break;
   case "tempo_120":
-    switch (play_mode.value){
-      case "play":
-        melodyAndChordRenderMidi(120);
-        break;  
-      case "only_melody":
-        melodyRenderMidi(120);
-        break;
-      case "only_chord":
-        chordRenderMidi(120);
-        break;
-      default: 
-    }    
+    bpm = 120;
     break;    
   case "tempo_140":
-    switch (play_mode.value){
-      case "play":
-        melodyAndChordRenderMidi(140);
-        break;  
-      case "only_melody":
-        melodyRenderMidi(140);
-        break;
-      case "only_chord":
-        chordRenderMidi(140);
-        break;
-      default: 
-    }    
+    bpm = 140;
     break;    
   case "tempo_160":
-    switch (play_mode.value){
-      case "play":
-        melodyAndChordRenderMidi(160);
-        break;  
-      case "only_melody":
-        melodyRenderMidi(160);
-        break;
-      case "only_chord":
-        chordRenderMidi(160);
-        break;
-      default: 
-    }       
+    bpm = 160;
     break;      
   default: 
+  }  
+  switch (play_mode.value){
+    case "play":
+      melodyAndChordRenderMidi(bpm);
+      break; 
+    case "only_melody":
+      melodyRenderMidi(bpm);
+      break; 
+    case "only_chord":
+      chordRenderMidi(bpm);
+      break;
+    default: 
   }  
 }
 
@@ -283,11 +226,9 @@ function soundAndDisplayNote(sound,display) {
   if(notesCount >= measureLength - 8){
     measure_edit.style.visibility = "visible";
   }
-
   if(notesCount >= measureLength){
     wrongSound.play();
   }
-
   else if(eighthNote.checked){
     function eighthNotePlayAndDisplayNoSpace(){
       playSingleNote(sound,"8n");
@@ -349,15 +290,12 @@ function soundAndDisplayNote(sound,display) {
       }
     } 
     }
-
     else if(quarterNote.checked){
-
       function quarterNotePlayAndDisplay(){
         playSingleNote(sound,"4n");
         notes[notesCount] = display + "2";
         notesCount+=2;
       }
-
       if(notesCount%8 == 7){
         wrongSound.play();
       }
@@ -388,9 +326,7 @@ function soundAndDisplayNote(sound,display) {
         } 
       }
     }
-
     else if(dottedQuarterNote.checked){
-
       function dottedQuarterNotePlayAndDisplay(){
         playSingleNote(sound,"3n");
         notes[notesCount] = display + "3";
@@ -426,9 +362,7 @@ function soundAndDisplayNote(sound,display) {
         } 
       }
     }
-
     else if(halfNote.checked){
-
       function halfNotePlayAndDisplay(){
         playSingleNote(sound,"2n");
         notes[notesCount] = display + "4";
@@ -479,7 +413,6 @@ document.getElementById("eighthRest").addEventListener("click", function() {
   notesCount++;
   displayNote();
 }, false);
-
 document.getElementById("quarterRest").addEventListener("click", function() {
   if(notesCount%8 == 7 || notesCount >= measureLength){
         wrongSound.play();
@@ -490,7 +423,6 @@ document.getElementById("quarterRest").addEventListener("click", function() {
   }
   displayNote();
 }, false);
-
 
 measure_edit.onchange = measureEdit;
 function measureEdit(){
@@ -517,7 +449,6 @@ function measureEdit(){
   displayNote();
   displayPiano();
 }
-
 
 const eighthNoteArray = ["C","D","E","F","G","A","B","c","d","e","C ","D ","E ","F ","G ","A ","B ","c ","d ","e "];
 const quarterNoteArray = ["C2","D2","E2","F2","G2","A2","B2","c2","d2","e2"];
@@ -602,7 +533,6 @@ function displayPiano(){
     document.getElementById("do_high").style.backgroundColor = "white";
   }
 }
-
 document.getElementById("piano").addEventListener("click", function() {
   displayNote();
   displayPiano();
@@ -615,55 +545,46 @@ document.getElementById("do").addEventListener("click", function() {
     soundAndDisplayNote("C4","C");
   }
 }, false);
-
   document.getElementById("re").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount <= 23){
       soundAndDisplayNote("D4","D");
     }
 }, false);
-
   document.getElementById("mi").addEventListener("click", function() {
     if(notesCount < 8 || notesCount >= 16 && notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("E4","E");
     }
 }, false);
-
   document.getElementById("fa").addEventListener("click", function() {
     if(notesCount >= 8 && notesCount < 16 || notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("F4","F");
     }
 }, false);
-
   document.getElementById("so").addEventListener("click", function() {
     if(notesCount < 8 || notesCount >= 16){
     soundAndDisplayNote("G4","G");
     }
 }, false);
-
   document.getElementById("ra").addEventListener("click", function() {
     if(notesCount >= 8 && notesCount < 16){
     soundAndDisplayNote("A4","A");
     }
 }, false);
-
   document.getElementById("shi").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("B4","B");
     }
 }, false);
-
   document.getElementById("do_high").addEventListener("click", function() {
     if(notesCount < 20 || notesCount >= 24){
     soundAndDisplayNote("C5","c");
     }
 }, false);
-
   document.getElementById("re_high").addEventListener("click", function() {
     if(notesCount >= 20 && notesCount < 24){
     soundAndDisplayNote("D5","d");
     }
 }, false);
-
   document.getElementById("mi_high").addEventListener("click", function() {
     //soundAndDisplayNote("E5","e");
 }, false);
