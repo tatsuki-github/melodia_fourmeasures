@@ -301,7 +301,7 @@ function soundAndDisplayNote(sound,display) {
     }
     switch (measure_edit.value){
       case "measure1":
-        if(notesCount == 0 || notesCount%8 != 0){
+        if(0 <= notesCount && notesCount < 8){
           if(notesCount%2 == 0){
             eighthNotePlayAndDisplayNoSpace();
           }
@@ -311,7 +311,7 @@ function soundAndDisplayNote(sound,display) {
         }
       break;  
       case "measure2":
-        if(notesCount == 8 || notesCount%8 != 0){
+        if(8 <= notesCount && notesCount < 16){
           if(notesCount%2 == 0){
             eighthNotePlayAndDisplayNoSpace();
           }
@@ -321,7 +321,7 @@ function soundAndDisplayNote(sound,display) {
         }
           break;
       case "measure3":
-        if(notesCount == 16 || notesCount%8 != 0){
+        if(16 <= notesCount && notesCount < 24){
           if(notesCount%2 == 0){
             eighthNotePlayAndDisplayNoSpace();
           }
@@ -331,7 +331,7 @@ function soundAndDisplayNote(sound,display) {
         }
           break;
       case "measure4":
-        if(notesCount == 24 || notesCount%8 != 0){
+        if(24 <= notesCount && notesCount < 32){
           if(notesCount%2 == 0){
             eighthNotePlayAndDisplayNoSpace();
           }
@@ -364,22 +364,22 @@ function soundAndDisplayNote(sound,display) {
       else{
         switch (measure_edit.value){
           case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
+            if(0 <= notesCount && notesCount < 8){
               quarterNotePlayAndDisplay();
             }
           break;  
           case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
+            if(8 <= notesCount && notesCount < 16){
               quarterNotePlayAndDisplay();
             }
               break;
           case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
+            if(16 <= notesCount && notesCount < 24){
               quarterNotePlayAndDisplay();
             }
               break;
           case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
+            if(24 <= notesCount && notesCount < 32){
               quarterNotePlayAndDisplay();
             }
               break;
@@ -402,22 +402,22 @@ function soundAndDisplayNote(sound,display) {
       else{
         switch (measure_edit.value){
           case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
+            if(0 <= notesCount && notesCount < 8){
               dottedQuarterNotePlayAndDisplay();
             }
           break;  
           case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
+            if(8 <= notesCount && notesCount < 16){
               dottedQuarterNotePlayAndDisplay();
             }
               break;
           case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
+            if(16 <= notesCount && notesCount < 24){
               dottedQuarterNotePlayAndDisplay();
             }
               break;
           case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
+            if(24 <= notesCount && notesCount < 32){
               dottedQuarterNotePlayAndDisplay();
             }
               break;
@@ -440,22 +440,22 @@ function soundAndDisplayNote(sound,display) {
       else{
         switch (measure_edit.value){
           case "measure1":
-            if(notesCount == 0 || notesCount%8 != 0){
+            if(0 <= notesCount && notesCount < 8){
               halfNotePlayAndDisplay();
             }
           break;  
           case "measure2":
-            if(notesCount == 8 || notesCount%8 != 0){
+            if(8 <= notesCount && notesCount < 16){
               halfNotePlayAndDisplay();
             }
               break;
           case "measure3":
-            if(notesCount == 16 || notesCount%8 != 0){
+            if(16 <= notesCount && notesCount < 24){
               halfNotePlayAndDisplay();
             }
               break;
           case "measure4":
-            if(notesCount == 24 || notesCount%8 != 0){
+            if(24 <= notesCount && notesCount < 32){
               halfNotePlayAndDisplay();
             }
               break;
