@@ -63,6 +63,11 @@
     <img src="img/nibunonpu.jpeg" alt="" class="rhythmImg" id="ta__n" ontouchstart="">
   </label>
 
+  <label for="wholeNote">
+    <input id="wholeNote" type="radio" name="beat" value="wholeNote">
+    <img src="img/zenonpu.jpg" alt="" class="rhythmImg" id="ta____n" ontouchstart="">
+  </label>
+
   <img src="img/hachibukyufu.jpeg" alt="" class="rhythmImg" id="eighthRest" ontouchstart="">
 
   <img src="img/shibukyufu.jpeg" alt="" class="rhythmImg" id="quarterRest" ontouchstart="">
@@ -111,6 +116,7 @@ const eighthNote = document.getElementById("eighthNote");
 const quarterNote = document.getElementById("quarterNote");
 const dottedQuarterNote = document.getElementById("dottedQuarterNote");
 const halfNote = document.getElementById("halfNote");
+const wholeNote = document.getElementById("wholeNote");
 const wrongSound = new Audio('audio/wrong.mp3');
 
 //ロード
@@ -130,6 +136,7 @@ function borderReset(){
   document.getElementById("tan").style.borderColor = "black";
   document.getElementById("ta_n").style.borderColor = "black";
   document.getElementById("ta__n").style.borderColor = "black";
+  document.getElementById("ta____n").style.borderColor = "black";
 }
 document.getElementById("tan").addEventListener("click", function() {
   kachi.play();
@@ -141,15 +148,20 @@ document.getElementById("tata").addEventListener("click", function() {
   borderReset();
   document.getElementById("tata").style.borderColor = "lightgreen";
 }, false);
+document.getElementById("ta_n").addEventListener("click", function() {
+  kachi.play();
+  borderReset();
+  document.getElementById("ta_n").style.borderColor = "orange";
+}, false);
 document.getElementById("ta__n").addEventListener("click", function() {
   kachi.play();
   borderReset();
   document.getElementById("ta__n").style.borderColor = "lightpink";
 }, false);
-document.getElementById("ta_n").addEventListener("click", function() {
+document.getElementById("ta____n").addEventListener("click", function() {
   kachi.play();
   borderReset();
-  document.getElementById("ta_n").style.borderColor = "orange";
+  document.getElementById("ta____n").style.borderColor = "yellow";
 }, false);
 
 //ド→C レ→D ミ→E ファ→F ソ→G ラ→A シ→B ド→c レ→d ミ→e
@@ -311,6 +323,19 @@ function soundAndDisplayNote(sound,display) {
       halfNotePlayAndDisplay();
     }
   }
+  else if(wholeNote.checked){
+    function wholeNotePlayAndDisplay(){
+      playSingleNote(sound,"1n");
+      notes[notesCount] = display + "8";
+      notesCount+=8;
+    }
+    if(notesCount%8 != 0){
+      wrongSound.play();
+    }
+    else if(measureEditFlg){
+      wholeNotePlayAndDisplay();
+    }
+  }
 }
 
 document.getElementById("eighthRest").addEventListener("click", function() {
@@ -367,6 +392,7 @@ const eighthNoteArray = ["C","D","E","F","G","A","B","c","d","e","C ","D ","E ",
 const quarterNoteArray = ["C2","D2","E2","F2","G2","A2","B2","c2","d2","e2"];
 const dottedQuarterNoteArray = ["C3","D3","E3","F3","G3","A3","B3","c3","d3","e3"];
 const halfNoteArray = ["C4","D4","E4","F4","G4","A4","B4","c4","d4","e4"];
+const wholeNoteArray = ["C8","D8","E8","F8","G8","A8","B8","c8","d8","e8"];
 document.getElementById("oneBack").addEventListener("click", function() {
   if(notesCount == 0){
     wrongSound.play();
@@ -389,6 +415,10 @@ document.getElementById("oneBack").addEventListener("click", function() {
   else if(halfNoteArray.includes(notes[notesCount-4])){
     notes[notesCount-4] = "";
     notesCount-=4;
+  }
+  else if(wholeNoteArray.includes(notes[notesCount-8])){
+    notes[notesCount-8] = "";
+    notesCount-=8;
   }
   else if(notes[notesCount-1] == " z"){
     notes[notesCount-1] = "";
